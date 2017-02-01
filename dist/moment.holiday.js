@@ -88,7 +88,6 @@ var Holidays = (function () {
         var weeks_after_month_start = Math.floor(days / 5);
         var days_remaining = days % 5;
         var workdate = moment(start)
-            .startOf('month')
             .add(weeks_after_month_start, 'week')
             .add(days_remaining, 'day');
         // return this.getNextWorkingday(workdate);

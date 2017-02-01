@@ -98,7 +98,6 @@ export class Holidays {
         let days_remaining = days % 5;
 
         let workdate = moment(start)
-            .startOf('month')
             .add(weeks_after_month_start, 'week')
             .add(days_remaining, 'day');
         // return this.getNextWorkingday(workdate);
