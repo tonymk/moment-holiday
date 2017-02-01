@@ -87,15 +87,15 @@ export class Holidays {
             }, {});
     }
 
-    addBusinessdays(start: string | moment.Moment, number: number): moment.Moment {
+    addBusinessdays(start: string | moment.Moment, days: number): moment.Moment {
         start = moment(start);
         // start = start.format('YYYY-MM-DD');
-        number += Object.keys(this.holidays(start.year()))
-            .filter(key => key >= moment(start).format('YYYY-MM-DD') && key <= moment(start).add(number, 'day').format('YYYY-MM-DD'))
+        days += Object.keys(this.holidays(start.year()))
+            .filter(key => key >= moment(start).format('YYYY-MM-DD') && key <= moment(start).add(days, 'day').format('YYYY-MM-DD'))
             .filter(key => !this.isWeekend(key))
             .length;
-        let weeks_after_month_start = Math.floor(number / 5);
-        let days_remaining = number % 5;
+        let weeks_after_month_start = Math.floor(days / 5);
+        let days_remaining = days % 5;
 
         let workdate = moment(start)
             .startOf('month')
@@ -136,17 +136,17 @@ export class Holidays {
             day === 0 && !this.sunday_iswork;
     }
 
-    test(number_of_days = 100) {
-        // improvement from 320 to 25ms on 1000 checks with cache
-        console.log('testing testing');
-        let start = moment();
-        let end = moment().add(number_of_days, 'day');
-        let timer = moment();
-        for (; start < end; start.add(1, 'day')) {
-            this.isHoliday(start.format('YYYY-MM-DD'));
-        }
-        console.log('completion time:', moment().diff(timer), 'ms');
-    }
+    // test(number_of_days = 100) {
+    //     // improvement from 320 to 25ms on 1000 checks with cache
+    //     console.log('testing testing');
+    //     let start = moment();
+    //     let end = moment().add(number_of_days, 'day');
+    //     let timer = moment();
+    //     for (; start < end; start.add(1, 'day')) {
+    //         this.isHoliday(start.format('YYYY-MM-DD'));
+    //     }
+    //     console.log('completion time:', moment().diff(timer), 'ms');
+    // }
 }
 
 // module.exports = Holidays;

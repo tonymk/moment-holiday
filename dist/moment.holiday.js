@@ -77,16 +77,16 @@ var Holidays = (function () {
             return pre;
         }, {});
     };
-    Holidays.prototype.addBusinessdays = function (start, number) {
+    Holidays.prototype.addBusinessdays = function (start, days) {
         var _this = this;
         start = moment(start);
         // start = start.format('YYYY-MM-DD');
-        number += Object.keys(this.holidays(start.year()))
-            .filter(function (key) { return key >= moment(start).format('YYYY-MM-DD') && key <= moment(start).add(number, 'day').format('YYYY-MM-DD'); })
+        days += Object.keys(this.holidays(start.year()))
+            .filter(function (key) { return key >= moment(start).format('YYYY-MM-DD') && key <= moment(start).add(days, 'day').format('YYYY-MM-DD'); })
             .filter(function (key) { return !_this.isWeekend(key); })
             .length;
-        var weeks_after_month_start = Math.floor(number / 5);
-        var days_remaining = number % 5;
+        var weeks_after_month_start = Math.floor(days / 5);
+        var days_remaining = days % 5;
         var workdate = moment(start)
             .startOf('month')
             .add(weeks_after_month_start, 'week')
@@ -116,18 +116,6 @@ var Holidays = (function () {
         var day = moment(date).day();
         return day === 6 && !this.saturday_iswork ||
             day === 0 && !this.sunday_iswork;
-    };
-    Holidays.prototype.test = function (number_of_days) {
-        if (number_of_days === void 0) { number_of_days = 100; }
-        // improvement from 320 to 25ms on 1000 checks with cache
-        console.log('testing testing');
-        var start = moment();
-        var end = moment().add(number_of_days, 'day');
-        var timer = moment();
-        for (; start < end; start.add(1, 'day')) {
-            this.isHoliday(start.format('YYYY-MM-DD'));
-        }
-        console.log('completion time:', moment().diff(timer), 'ms');
     };
     return Holidays;
 }());

@@ -3,9 +3,10 @@ import { Holidays } from './../moment.holiday';
 describe('Test moment.holiday', () => {
 
     describe('test Norwegian holidays', () => {
-        let h = new Holidays()
-        let holidays = h.holidays('2017')
-        describe('get holidays from holidays()', () => {
+        let h = new Holidays();
+
+        describe('Testing func holidays()', () => {
+            let holidays = h.holidays('2017');
             it('should be of length: 14', () => {
                 expect(Object.keys(holidays).length).toEqual(14);
             });
@@ -54,8 +55,27 @@ describe('Test moment.holiday', () => {
             it('Should get: Nyttårsaften', () => {
                 expect(holidays['2017-12-31']).toEqual('Nyttårsaften');
             });
+        });
+        describe('Testing func easter', () => {
+            pending('implement at a later date');
+        });
+        describe('Testing func isWorkday', () => {
+            pending('');
+        });
+        describe('Testing func isHoliday', () => {
+            pending('');
+        });
+        describe('Testing func getNextWorkingday', () => {
+            pending('');
+        });
+        describe('Testing func addBusinessdays', () => {
+            pending('');
+        });
+        describe('Testing func holidaysInMonth', () => {
+            pending('');
+        });
 
-        })
+    });
 
-    })
-})
+
+});

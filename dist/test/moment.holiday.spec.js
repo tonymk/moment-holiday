@@ -3,8 +3,8 @@ var moment_holiday_1 = require("./../moment.holiday");
 describe('Test moment.holiday', function () {
     describe('test Norwegian holidays', function () {
         var h = new moment_holiday_1.Holidays();
-        var holidays = h.holidays('2017');
-        describe('get holidays from holidays()', function () {
+        describe('Testing func holidays()', function () {
+            var holidays = h.holidays('2017');
             it('should be of length: 14', function () {
                 expect(Object.keys(holidays).length).toEqual(14);
             });
@@ -53,6 +53,24 @@ describe('Test moment.holiday', function () {
             it('Should get: Nyttårsaften', function () {
                 expect(holidays['2017-12-31']).toEqual('Nyttårsaften');
             });
+        });
+        describe('Testing func easter', function () {
+            pending('implement at a later date');
+        });
+        describe('Testing func isWorkday', function () {
+            pending('');
+        });
+        describe('Testing func isHoliday', function () {
+            pending('');
+        });
+        describe('Testing func getNextWorkingday', function () {
+            pending('');
+        });
+        describe('Testing func addBusinessdays', function () {
+            pending('');
+        });
+        describe('Testing func holidaysInMonth', function () {
+            pending('');
         });
     });
 });
